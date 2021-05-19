@@ -6,7 +6,7 @@
 
   <groupId>org.portal</groupId>
   <artifactId>SpringApplication</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1</version>
   <packaging>jar</packaging>
 
   <name>SpringApplication Maven Webapp</name>
@@ -22,6 +22,7 @@
     <flyway.schemas>spring</flyway.schemas>
     <flyway.driver>com.mysql.jdbc.Driver</flyway.driver>
     <flyway.url>jdbc:mysql://localhost:3306/spring?serverTimezone=UTC</flyway.url>
+    <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
 
   <parent>
@@ -43,8 +44,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -85,81 +84,11 @@
   </dependencies>
 
   <build>
-    <finalName>SpringApplication</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <configuration>
-            <mainClass>com.portal.springrest.Main</mainClass>
-          </configuration>
-
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals><goal>copy</goal></goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>com.heroku</groupId>
-                    <artifactId>webapp-runner</artifactId>
-                    <version>9.0.41.0</version>
-                    <destFileName>webapp-runner.jar</destFileName>
-                  </artifactItem>
-                </artifactItems>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.flywaydb</groupId>
-          <artifactId>flyway-maven-plugin</artifactId>
-          <version>4.0.1</version>
-        </plugin>
-
-      </plugins>
-    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
 </project>
